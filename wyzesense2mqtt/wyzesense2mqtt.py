@@ -280,6 +280,7 @@ def send_discovery_topics(sensor_mac):
     else:
         sensor_version = ""
 
+    device_name = SENSORS[sensor_mac].get('device_name', sensor_name)
     device_payload = {
         'identifiers': [f"wyzesense_{sensor_mac}", sensor_mac],
         'manufacturer': "Wyze",
@@ -287,7 +288,7 @@ def send_discovery_topics(sensor_mac):
             "Sense Motion Sensor" if (sensor_class == "motion")
             else "Sense Contact Sensor"
         ),
-        'name': f'{sensor_name} Device',
+        'name': sensor_name,
         'sw_version': sensor_version
     }
 
@@ -300,12 +301,12 @@ def send_discovery_topics(sensor_mac):
             'json_attr_t': f"{CONFIG['self_topic_root']}/{sensor_mac}"
         },
         'signal_strength': {
-            'name': f"{sensor_name} Signal Strength",
+            'name': "Signal Strength",
             'dev_cla': "signal_strength",
             'unit_of_meas': "dBm"
         },
         'battery': {
-            'name': f"{sensor_name} Battery",
+            'name': "Battery",
             'dev_cla': "battery",
             'unit_of_meas': "%"
         }
