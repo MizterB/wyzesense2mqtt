@@ -288,7 +288,7 @@ def send_discovery_topics(sensor_mac):
             "Sense Motion Sensor" if (sensor_class == "motion")
             else "Sense Contact Sensor"
         ),
-        'name': sensor_name,
+        'name': device_name,
         'sw_version': sensor_version
     }
 
